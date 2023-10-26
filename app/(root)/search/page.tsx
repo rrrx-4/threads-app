@@ -1,10 +1,11 @@
 
 import UserCard from "@/components/cards/UserCard"
-import { fetchUsers } from "@/lib/actions/thread.action"
+import { fetchUsers } from "@/lib/actions/user.action"
 import { fetchUser } from "@/lib/actions/user.action"
 import { currentUser } from "@clerk/nextjs"
 import { redirect } from "next/navigation"
 
+import SearchBox from "@/components/forms/SearchBox"
 
 
 async function Page() {
@@ -26,11 +27,20 @@ async function Page() {
 
     })
 
+
+    
+
+    
+
+
   return (
     <section>
       <h1 className="head-text mb-10" >Search</h1>
 
-      <div className="mt-14 flex flex-col gap-9" >
+
+    <SearchBox userId={user.id} ></SearchBox>
+
+      {/* <div className="mt-14 flex flex-col gap-9" >
         {
           result.users.length === 0 ? (
             <p className="no-result" >No users</p>
@@ -44,7 +54,7 @@ async function Page() {
             </>
           )
         }
-      </div>
+      </div> */}
     </section>
   )
 }

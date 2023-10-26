@@ -15,7 +15,7 @@ import {
 import {Textarea} from '@/components/ui/textarea'
 import z from "zod"
 import { Button } from '../ui/button';
-
+import { useOrganization } from '@clerk/nextjs';
 
 
 import {usePathname, useRouter} from 'next/navigation'
@@ -63,6 +63,8 @@ const PostThread = ({userId} : {userId : string}) => {
     const pathname = usePathname()
     const router = useRouter()
 
+    const {organization} = useOrganization()
+
     // console.log(btnTitle, );
     const form = useForm({
         resolver: zodResolver(ThreadValidation),
@@ -74,12 +76,14 @@ const PostThread = ({userId} : {userId : string}) => {
 
     const onSubmit = async (values : z.infer<typeof ThreadValidation>)=>{
 
-      await createThread({
+     await createThread({
         text: values.thread,
         author: userId,
-        communityId : null,
+        communityId : organization ? organization.id : null,
         path : pathname
       })
+
+     
 
       router.push("/")
 

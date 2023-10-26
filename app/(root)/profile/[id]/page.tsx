@@ -16,12 +16,17 @@ async function Page({params}: {params : {id: string}}) {
 
     const userInfo = await fetchUser(params.id)
 
+
+
+
     if(!userInfo?.onboarded) redirect('/onboarding')
 
+    console.log("userInfo", userInfo);
+    
 
   return (
    <section>
-    <ProfileHeader accountId={userInfo.id} authUserId={user.id} name={userInfo.name} username={userInfo.username} imgUrl={userInfo.image} bio={userInfo.bio}></ProfileHeader>
+    <ProfileHeader accountId={userInfo.id.toString()} authUserId={user.id} name={userInfo.name} username={userInfo.username} imgUrl={userInfo.image} bio={userInfo.bio}></ProfileHeader>
 
     <div className="mt-9" >
 
@@ -31,7 +36,7 @@ async function Page({params}: {params : {id: string}}) {
                     profileTabs.map((tab)=>(
                         <TabsTrigger key={tab.label} value={tab.value} className="tab" >
                             <Image src={tab.icon} alt={tab.label} width={24} height={24} className="object-contain" />
-                            <p className="max-sm:hiddne">{tab.label}</p>
+                            <p className="max-sm:hidden">{tab.label}</p>
 
                         {
                             tab.label === 'Threads' && (

@@ -45,19 +45,17 @@ import { useState } from "react"
     const onSubmit = async (values : z.infer<typeof SearchValidation>)=>{
 
         if(values.search.length >= 1){
-
+ console.log('ggg');
             const users = await searchUsers(userId.toString(), values.search)
 
             setUsers(users)
 
         }
-
-        if(values.search.length === 0)
-        {
-          console.log("ggjgg");
+          else{
+         
           
-          setUsers([])
-        }
+          setUsers([])}
+        
         
       
  

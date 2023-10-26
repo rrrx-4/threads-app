@@ -11,6 +11,6 @@ export const CommentValidation = z.object({
 })
 
 export const SearchValidation = z.object({
-    search: z.string().nonempty().min(0, {message: 'Minimum 3 characters'}),
+    search: z.string(),
    
 })

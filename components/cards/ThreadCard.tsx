@@ -5,7 +5,7 @@ import { formatDateString } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { useRouter } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 
 interface Props {
     id: string
@@ -48,6 +48,11 @@ const ThreadCard = ({id,parentId, content, currentUserId, author, community,crea
   
 
     const handleClick = async ()=>{
+
+
+        if(!currentUserId){
+            return null;
+        }
 
         await LikePost({userId: currentUserId || "", postId: id});
 

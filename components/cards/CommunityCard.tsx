@@ -47,7 +47,7 @@ function CommunityCard({ id, name, username, imgUrl, bio, members }: Props) {
             View
           </Button>
         </Link>
->
+
 
         {members.length > 0 && (
           <div className='flex items-center'>
